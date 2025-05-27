@@ -28,9 +28,22 @@ double g_derivada(double x) {
     return 6 * (x * x) - 20;
 }
 
-// x³ / 10 - 13 / 20
+// phi_g(x) = x³ / 10 - 13 / 20
 double phi_g(double x) {
     return (x * x * x) / 10 - 13 / 20;
+}
+
+// h(x) = x * log(x) - 1
+double h(double x) {
+    return x * log10(x);
+}
+
+double h_derivada(double x ) {
+    return log10(x) + 1 / log(10);
+}
+
+double phi_h(double x) {
+    return x - 1.3 * (x * log10(x) - 1);
 }
 
 void imprimeResultado(Resultado resultado, char *nomeMetodo) {
@@ -67,7 +80,7 @@ int main() {
 
     printf("\n========    g(x) = 2 * x^3 - 20x - 13     ========\n");
     double aG = 3;
-    double bG = 4;
+    double bG = 9;
     double precisaoG = 0.000001;
     Resultado resultadoBG = metodo_bisseccao(g, aG, bG, precisaoG);
     imprimeResultado(resultadoBG, "Método da Bissecção");
@@ -82,5 +95,24 @@ int main() {
     double x1_secanteG = 1;
     Resultado resultadoSG = metodo_secante(g, x0_secanteG, x1_secanteG, precisaoG, precisaoG);
     imprimeResultado(resultadoSG, "Método da Secante");
+
+    printf("\n========    h(x) = x * log(x) - 1     ========\n");
+    double aH = 2;
+    double bH = 3;
+    double precisaoH = 0.0000001;
+    Resultado resultadoBH = metodo_bisseccao(h, aH, bH, precisaoH);
+    imprimeResultado(resultadoBH, "Método da Bissecção");
+
+    Resultado resultadoNRH = metodo_newton_raphson(h, h_derivada, x0, precisaoH, precisaoH);
+    imprimeResultado(resultadoNRH, "Método de Newton Raphson");
+
+    Resultado resultadoPFH = metodo_ponto_fixo(h, phi_h, x0, precisaoH, precisaoH);
+    imprimeResultado(resultadoPFH, "Método do Ponto Fixo");
+
+    double x0_secanteH = 0;
+    double x1_secanteH = 1;
+    Resultado resultadoSH = metodo_secante(h, x0_secanteH, x1_secanteH, precisaoH, precisaoH);
+    imprimeResultado(resultadoSH, "Método da Secante");
+
     return 0;
 }
