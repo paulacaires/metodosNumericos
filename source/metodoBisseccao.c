@@ -12,7 +12,7 @@ Resultado metodo_bisseccao(Funcao f, double a, double b, double precisao) {
     if (fa * fb >= 0) {
         resultado.numIteracoes = 0;
         resultado.raiz = NAN;
-        resultado.seConvergiu = true;
+        resultado.seConvergiu = false;
         return resultado;
     }
 

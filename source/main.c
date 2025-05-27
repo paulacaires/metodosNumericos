@@ -35,7 +35,7 @@ double phi_g(double x) {
 
 // h(x) = x * log(x) - 1
 double h(double x) {
-    return x * log10(x);
+    return x * log10(x) - 1;
 }
 
 double h_derivada(double x ) {
