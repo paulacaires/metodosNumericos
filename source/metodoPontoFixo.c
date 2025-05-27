@@ -14,8 +14,6 @@ Resultado metodo_ponto_fixo(Funcao f, Funcao phi, long double x0, double precisa
 
   for (k = 1; k <= MAX_ITER; k++) {
     long double x1 = phi(x0);
-    printf("%Lf ", x0);
-    printf("%Lf ", x1);
 
     if (fabs(f(x1)) < precisao1 || fabs(x1 - x0) < precisao2) {
       resultado.numIteracoes = k;

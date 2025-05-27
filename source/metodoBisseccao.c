@@ -30,7 +30,6 @@ Resultado metodo_bisseccao(Funcao f, double a, double b, double precisao) {
 
     for (k; k < MAX_ITER; k++) {
         resultado.numIteracoes += 1;
-        printf("%d", resultado.numIteracoes);
 
         // Pseudocódigo Passo 5: x = (a + b) / 2
         double x = (a + b) / 2;
