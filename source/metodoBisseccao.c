@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 Resultado metodo_bisseccao(Funcao f, double a, double b, double precisao) {
+    int MAX_ITER = 1000;
     double fa = f(a);
     double fb = f(b);
 
@@ -11,13 +12,15 @@ Resultado metodo_bisseccao(Funcao f, double a, double b, double precisao) {
     if (fa * fb >= 0) {
         resultado.numIteracoes = 0;
         resultado.raiz = NAN;
-        resultado.seConvergiu = false;
+        resultado.seConvergiu = true;
         return resultado;
     }
 
     if ((b - a) < precisao) {
         resultado.numIteracoes = 0;
         resultado.raiz = (a + b) / 2; // Qualquer x pertencente à [a, b]
+        resultado.seConvergiu = true;
+        return resultado;
     }
 
     double k = 1;
@@ -25,8 +28,9 @@ Resultado metodo_bisseccao(Funcao f, double a, double b, double precisao) {
 
     resultado.numIteracoes = 0;
 
-    for (k; 1; k++) {
-        resultado.numIteracoes++;
+    for (k; k < MAX_ITER; k++) {
+        resultado.numIteracoes += 1;
+        printf("%d", resultado.numIteracoes);
 
         // Pseudocódigo Passo 5: x = (a + b) / 2
         double x = (a + b) / 2;
